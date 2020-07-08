@@ -70,7 +70,14 @@ def handle_message(event):
     else:
         user_hand = -1
 
-    message = judge(user_hand, bot_hand)
+    if bot_hand == 0:
+        message = "botはグーを出しました。\n"
+    elif bot_hand == 1:
+        message = "botはチョキを出しました。\n"
+    elif bot_hand == 2:
+        message = "botはパーを出しました。\n"
+
+    message += judge(user_hand, bot_hand)
 
     line_bot_api.reply_message(
         event.reply_token,
