@@ -21,6 +21,22 @@ LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
+def judge(userhand, bothand):
+    if userhand == -1:
+        message = "グー、チョキ、パーのどれかを入力してね"
+    else:
+        status = (userhand - bothand + 3) % 3
+
+        if status == 0:
+            message = "あなたの勝ち！"
+        elif status == 1:
+            message = "お前の負け。なんで負けたか明日までに考えてください。ほな、いただきます。"
+        elif status == 2:
+            message = "愛子です。"
+    return message
+
+
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -41,14 +57,20 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    bot_hand = random.randint(0,2)
     if event.message.text == "グー":
-        message = "グーが入力されました。"
+        user_hand = 0
+        #message = "グーが入力されました。"
     elif event.message.text == "チョキ":
-        message = "チョキが入力されました。"
+        user_hand = 1
+        #message = "チョキが入力されました。"
     elif event.message.text == "パー":
-        message = "パーが入力されました。"
+        user_hand = 2
+        #message = "パーが入力されました。"
     else:
-        message = "ちげし"
+        user_hand = -1
+
+    message = judge(user_hand, bot_hand)
 
     line_bot_api.reply_message(
         event.reply_token,
