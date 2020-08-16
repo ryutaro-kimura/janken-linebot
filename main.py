@@ -76,12 +76,12 @@ def handle_message(event):
         user_hand = -1
 
 
-    if bot_hand == 0:
+    if progress_response == 0:
         message = "いい感じ！\n"
-    elif bot_hand == 1:
+    elif progress_response == 1:
         num = random.randint(1,100)
-        message = "今" + str(num) + "％くらい！\n"
-    elif bot_hand == 2:
+        message = "今" + str() + "％くらい！\n"
+    elif progress_response == 2:
         message = "ピエンなう！\n"
 
     message += judge(user_hand, bot_hand)
