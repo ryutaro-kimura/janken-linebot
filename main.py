@@ -61,9 +61,10 @@ def callback():
 #入力値に応じてuser_handを変更
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    bot_hand = random.randint(0,2)
+    #bot_hand = random.randint(0,2)
     if event.message.text == "進捗どう？":
         user_hand = 0
+        bot_hand = random.randint(0,2)
         #message = "グーが入力されました。"
     elif event.message.text == "元気？":
         user_hand = 1
@@ -81,7 +82,7 @@ def handle_message(event):
         message = "botはチョキを出しました。\n"
     elif bot_hand == 2:
         message = "botはパーを出しました。\n"
-    
+
 
     message += judge(user_hand, bot_hand)
 
