@@ -28,9 +28,9 @@ def judge(userhand, bothand):
         status = (userhand - bothand + 3) % 3
 
         if status == 0:
-            message = "愛子です。"
+            message = "まさこです。"
         elif status == 1:
-            message = "お前の負け。なんで負けたか明日までに考えてください。ほな、いただきます。"
+            message = "お前の負け。"
         elif status == 2:
             message = "あなたの勝ち！"
     return message
