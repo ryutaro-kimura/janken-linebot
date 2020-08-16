@@ -29,7 +29,7 @@ def judge(A):
         message = "なるほど！"
     elif A == 0:
         num = random.randint(1,101)
-        message = "今"　+ str(num) + "％だよ！"
+        message = "今" + str(num) + "％だよ！"
     elif A == 1:
         message = "完全に理解した！"
     elif A == 2:
