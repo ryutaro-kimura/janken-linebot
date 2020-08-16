@@ -21,14 +21,17 @@ LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
+
+
+
 def judge(userhand, bothand):
     if userhand == -1:
-        message = "グー、チョキ、パーのどれかを入力してね"
+        message = "なるほど！"
     else:
         status = (userhand - bothand + 3) % 3
 
         if status == 0:
-            message = "まさこです。"
+            message = "今"
         elif status == 1:
             message = "お前の負け。"
         elif status == 2:
