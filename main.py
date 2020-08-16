@@ -25,9 +25,7 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 #返答を決める変数
 def judge(A):
-    if A == -1:
-        message = "なるほど！"
-    elif A == 0:
+    if A == 0:
         num = random.randint(1,101)
         message = "今" + str(num) + "％だよ！"
     elif A == 1:
@@ -46,6 +44,12 @@ def judge(A):
         message = "困った時はお互い様だろ？？"
     elif A == 8:
         message = "どいたま！"
+    elif A == 9:
+        message = "なるほど！"
+    elif A == 10:
+        message = "わかるわ〜"
+    if A == 11:
+        message = "ほうほう"
 
     return message
 
@@ -82,7 +86,7 @@ def handle_message(event):
         a = random.randint(6,8)
     #文字が入力された時、数字を代入
     else:
-        a = -1
+        a = random.randint(9,11)
 
     if b == 0:
         message = "佐藤くん:"
