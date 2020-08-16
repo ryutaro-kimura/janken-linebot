@@ -70,12 +70,10 @@ def handle_message(event):
         #message = "チョキが入力されました。"
     elif event.message.text == "ありがとう":
         user_hand = 2
-        #message = ""
-    elif event.message.text == "おーい":
-        user_hand = 2
         #message = "パーが入力されました。"
     else:
         user_hand = -1
+
     '''
     if bot_hand == 0:
         message = "botはグーを出しました。\n"
