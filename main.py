@@ -23,7 +23,7 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 
 
-
+#返答を決める変数
 def judge(userhand, bothand):
     if userhand == -1:
         message = "なるほど！"
@@ -36,10 +36,11 @@ def judge(userhand, bothand):
             message = "お前の負け。"
         elif status == 2:
             message = "あなたの勝ち！"
+
     return message
 
 
-
+#呪文
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -57,28 +58,32 @@ def callback():
 
     return 'OK'
 
-
+#入力値に応じてuser_handを変更
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     bot_hand = random.randint(0,2)
-    if event.message.text == "グー":
+    if event.message.text == "進捗どう？":
         user_hand = 0
         #message = "グーが入力されました。"
-    elif event.message.text == "チョキ":
+    elif event.message.text == "元気？":
         user_hand = 1
         #message = "チョキが入力されました。"
-    elif event.message.text == "パー":
+    elif event.message.text == "ありがとう":
+        user_hand = 2
+        #message = ""
+    elif event.message.text == "おーい":
         user_hand = 2
         #message = "パーが入力されました。"
     else:
         user_hand = -1
-
+    '''
     if bot_hand == 0:
         message = "botはグーを出しました。\n"
     elif bot_hand == 1:
         message = "botはチョキを出しました。\n"
     elif bot_hand == 2:
         message = "botはパーを出しました。\n"
+    '''
 
     message += judge(user_hand, bot_hand)
 
