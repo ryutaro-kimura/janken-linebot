@@ -24,30 +24,31 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 
 #返答を決める変数
-def judge(others, prog, pow, thx):
-    if others == -1:
+def judge(A):
+    if A == -1:
         message = "なるほど！"
-    elif prog == 0:
+    elif A == 0:
         num = random.randint(1,101)
         message = "今"　+ str(num) + "％だよ！"
-    elif prog == 1:
+    elif A == 1:
         message = "完全に理解した！"
-    elif prog == 2:
+    elif A == 2:
         message = "ピエンなう！"
-    elif pow == 0:
+    elif A == 3:
         message = "元気！！"
-    elif pow == 1:
+    elif A == 4:
         message = "元気100倍アンパンマン！"
-    elif prog == 2:
+    elif A == 5:
         message = "うん！"
-    elif thx == 0:
+    elif A == 6:
         message = "気にすんな！"
-    elif thx == 1:
+    elif A == 7:
         message = "困った時はお互い様だろ？？"
-    elif thx == 2:
+    elif A == 8:
         message = "どいたま！"
 
     return message
+
 
 #呪文
 @app.route("/callback", methods=['POST'])
@@ -71,18 +72,18 @@ def callback():
 def handle_message(event):
     #文字が入力された時、数字を代入
     if event.message.text == "進捗どう？":
-        Prog = random.randint(0,2)
+        a = random.randint(0,2)
     #文字が入力された時、数字を代入
     elif event.message.text == "元気？":
-        Pow = random.randint(0,2)
+        a = random.randint(3,5)
     #文字が入力された時、数字を代入
     elif event.message.text == "ありがとう":
-        Thx = random.randint(0,2)
+        a = random.randint(6,8)
     #文字が入力された時、数字を代入
     else:
-        Others = -1
+        a = -1
 
-    message += judge(Prog, Pow, Thx, Others)
+    message += judge(a)
 
     line_bot_api.reply_message(
         event.reply_token,
