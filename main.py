@@ -70,6 +70,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    b = random.randint(0,2)
     #文字が入力された時、数字を代入
     if event.message.text == "進捗どう？":
         a = random.randint(0,2)
@@ -82,6 +83,13 @@ def handle_message(event):
     #文字が入力された時、数字を代入
     else:
         a = -1
+
+    if b == 0:
+        message = "Aくん"
+    elif b == 1:
+        message = "Bくん"
+    elif b == 2:
+        message = "Cちゃん"
 
     message += judge(a)
 
