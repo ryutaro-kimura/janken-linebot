@@ -85,11 +85,11 @@ def handle_message(event):
         a = -1
 
     if b == 0:
-        message = "Aくん"
+        message = "カッチーくん:\n"
     elif b == 1:
-        message = "Bくん"
+        message = "太郎くん:\n"
     elif b == 2:
-        message = "Cちゃん"
+        message = "花子ちゃん:\n"
 
     message += judge(a)
 
