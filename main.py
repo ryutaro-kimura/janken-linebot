@@ -24,21 +24,30 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 
 #返答を決める変数
-def judge(userhand, bothand):
-    if userhand == -1:
+def judge(others, prog, pow, thx):
+    if others == -1:
         message = "なるほど！"
-    else:
-        status = (userhand - bothand + 3) % 3
-
-        if status == 0:
-            message = "今"
-        elif status == 1:
-            message = "お前の負け。"
-        elif status == 2:
-            message = "あなたの勝ち！"
+    elif prog == 0:
+        num = random.randint(1,101)
+        message = "今"　+ str(num) + "％だよ！"
+    elif prog == 1:
+        message = "完全に理解した！"
+    elif prog == 2:
+        message = "ピエンなう！"
+    elif pow == 0:
+        message = "元気！！"
+    elif pow == 1:
+        message = "元気100倍アンパンマン！"
+    elif prog == 2:
+        message = "うん！"
+    elif thx == 0:
+        message = "気にすんな！"
+    elif thx == 1:
+        message = "困った時はお互い様だろ？？"
+    elif thx == 2:
+        message = "どいたま！"
 
     return message
-
 
 #呪文
 @app.route("/callback", methods=['POST'])
@@ -58,37 +67,27 @@ def callback():
 
     return 'OK'
 
-#入力値に応じてuser_handを変更
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    #bot_hand = random.randint(0,2)
+    #文字が入力された時、数字を代入
     if event.message.text == "進捗どう？":
-        user_hand = 0
-        progress_response = random.randint(0,2)
-        #message = "グーが入力されました。"
+        Prog = random.randint(0,2)
+    #文字が入力された時、数字を代入
     elif event.message.text == "元気？":
-        user_hand = 1
-        #message = "チョキが入力されました。"
+        Pow = random.randint(0,2)
+    #文字が入力された時、数字を代入
     elif event.message.text == "ありがとう":
-        user_hand = 2
-        #message = "パーが入力されました。"
+        Thx = random.randint(0,2)
+    #文字が入力された時、数字を代入
     else:
-        user_hand = -1
+        Others = -1
 
-
-    if progress_response == 0:
-        message = "いい感じ！\n"
-    elif progress_response == 1:
-        num = random.randint(1,100)
-        message = "今" + str(num) + "％くらい！\n"
-    elif progress_response == 2:
-        message = "ピエンなう！\n"
-
-    message += judge(user_hand, bot_hand)
+    message += judge(Prog, Pow, Thx, Others)
 
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=message))
+
 
 
 if __name__ == "__main__":
