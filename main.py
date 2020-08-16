@@ -80,7 +80,7 @@ def handle_message(event):
         message = "いい感じ！\n"
     elif progress_response == 1:
         num = random.randint(1,100)
-        message = "今" + str() + "％くらい！\n"
+        message = "今" + str(num) + "％くらい！\n"
     elif progress_response == 2:
         message = "ピエンなう！\n"
 
