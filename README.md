@@ -1,1 +1,1 @@
-# linebot
+# janken-linebot
